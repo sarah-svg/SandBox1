@@ -1,5 +1,5 @@
 {
-  "name": ".",
+  "name": "game",
   "version": "1.0.0",
   "description": "",
   "main": "dist/index.js",
@@ -62,6 +62,9 @@
   },
   "dependencies": {
     "react": "^17.0.2",
-    "react-dom": "^17.0.2"
+    "react-dom": "^17.0.2",
+    "react-redux": "^7.2.3",
+    "redux": "^4.0.5",
+    "redux-devtools-extension": "^2.13.9"
   }
 }
