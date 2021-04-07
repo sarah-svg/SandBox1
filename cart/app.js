@@ -19,3 +19,13 @@ for (let oneItem of item){
 }
 
 console.log(item, shop);
+
+button.addEventListener('click', () =>{
+    const cart = getShop();
+
+    alert(JSON.stringify(cart));
+
+    localStorage.clear();
+    
+    window.location = '/';
+});
