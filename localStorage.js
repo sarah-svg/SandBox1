@@ -10,3 +10,9 @@ export function getShop(){
         return [];
     }
 }
+
+export function setShop(parsedShop){
+    const stringyShop = JSON.stringify(parsedShop);
+    localStorage.setItem(SHOP, stringyShop);
+}
+
