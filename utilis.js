@@ -3,76 +3,81 @@
 
 import { addItemToShop, findById } from './localStorage.js';
 
-export function createShopLi(item){
+export function createShopLi(item) {
     const li = document.createElement('li');
-    li.classList.add('shop');
-    li.style.background = 'purple';
 
-    const itemName = document.createElement('p');
-    itemName.classList.add('shop');
-    // itemName.style.background = item.color;
-    itemName.textContent = item.name;
+    li.classList.add('item');
+    li.style.background = item.color;
+
+    const pName = document.createElement('p');
+
+    pName.classList.add('name');
+    pName.textContent = item.name;
 
     const pType = document.createElement('p');
-    pType.classList.add('shop');
-    pType.style.background = 'purple';
+
+    pType.classList.add('type');
     pType.textContent = item.type;
 
-
-
     const pSize = document.createElement('p');
-    pSize.classList.add('shop');
-    pSize.style.background = 'purple';
-    pSize.textContent = item.description;
 
-    const img = document.createElement('img');
-    img.src = item.image;
-    const price = document.createElement('p');
-    price.textContent = item.price.toLocaleString('en-US', {
+    pSize.textContent = item.size;
+
+    const image = document.createElement('img');
+
+    image.src = item.image;
+
+    const pAlignment = document.createElement('p');
+
+    pAlignment.textContent = item.alignment;
+
+    const pEvolve = document.createElement('p');
+
+    pEvolve.textContent = item.canDigivolve ? 'Can digivolve' : 'This is the final form';
+
+    const pPrice = document.createElement('p');
+
+    pPrice.textContent = item.price.toLocaleString('en-US', {
         style: 'currency',
         currency: 'USD',
     }); 
     const button = document.createElement('button');
-    button.textContent = 'buy me';
+
+    button.textContent = 'Add to digicart';
+
     button.addEventListener('click', () => {
         addItemToShop(item.id);
     });
 
-    li.append(pType, pSize, img, price, button);
+    li.append(pName, pType, pSize, image, pAlignment,pEvolve, pPrice, button);
 
-    // console.log(li, itemName, pType, pSize, img, price, button);
     return li;
 }
-
-export function createTableRow(cartItem, someShop){
+export function createTableRow(someCartItem, someitem) {
     const tr = document.createElement('tr');
-    // name.textContent = cartItem.name;
-    const name = document.createElement('td');
-    // quantity.textContent = cartItem.quantity;
-    const quantity = document.createElement('td');
+    const tdName = document.createElement('td');
+    const tdQuantity = document.createElement('td');
+    const tdPrice = document.createElement('td');
 
-    const price = document.createElement('td');
-    // const total = someShop.price * cartItem.quantity;
+    tdName.textContent = someitem.name;
+    tdQuantity.textContent = someCartItem.quantity;
+    const total = someitem.price * someCartItem.quantity;
 
+
+    // const totalAsUSD = `$${total}.00`;
     const config = {
         currency: 'USD',
         style: 'currency'
     };
 
-    // const totalAsUSD = total.toLocaleString('en-US', config);
-    // price.textContent = totalAsUSD;
+    const totalAsUSD = total.toLocaleString('en-US', config);
 
-    
-    
-    
-    
-    console.log(tr, name, quantity);
+    tdPrice.textContent = totalAsUSD;
 
-    tr.append(name, quantity, price);
-    return tr;   
-
+    tr.append(tdName, tdQuantity, tdPrice);
+    
+    return tr;
 }
-
 export function craeteTotalRow(cartItem, someShop){
     let sum = 0;
 
