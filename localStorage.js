@@ -23,3 +23,19 @@ export function findById(array, someId){
         }
     }
 }
+
+export function addItemToShop(shopId){
+    const shop = getShop();
+
+    const match = findById(shop, shopId);
+    if (match){
+        match.quantity++;
+    } else { 
+        const item = {
+            id: shopId,
+            quantity: 1
+        };
+        shop.push(item);
+    }
+    setShop(shop);
+}
