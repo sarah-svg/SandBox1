@@ -16,3 +16,10 @@ export function setShop(parsedShop){
     localStorage.setItem(SHOP, stringyShop);
 }
 
+export function findById(array, someId){
+    for (let item of array){
+        if (item.id === someId){
+            return item;
+        }
+    }
+}
